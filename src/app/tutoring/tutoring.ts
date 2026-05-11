@@ -3,8 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { Menu } from './layout/menu/menu';
 
 @Component({
-  selector: 'amv-members',
+  selector: 'amv-tutoring',
   imports: [RouterOutlet, Menu],
-  templateUrl: './members.html',
+  templateUrl: './tutoring.html',
 })
-export class Members {}
+export class Tutoring {}

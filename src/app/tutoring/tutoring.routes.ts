@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { EditMember } from './features/edit-member/edit-member';
 import { MemberList } from './features/member-list/member-list';
-import { Members } from './members';
+import { Tutoring } from './tutoring';
 
-export const memberRoutes: Routes = [
+export const tutoringRoutes: Routes = [
   {
     path: '',
-    component: Members,
+    component: Tutoring,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'list' },
       { path: 'list', component: MemberList },

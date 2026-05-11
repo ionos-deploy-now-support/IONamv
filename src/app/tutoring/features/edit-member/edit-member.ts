@@ -44,7 +44,7 @@ export class EditMember {
       } else {
         this.memberStore.addMember(new Member(this.firstNameCtrl.value, this.lastNameCtrl.value));
       }
-      this.router.navigate(['members']);
+      this.router.navigate(['tutoring']);
     }
   }
 }
