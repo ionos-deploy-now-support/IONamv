@@ -42,7 +42,7 @@ export class EditMember {
         current.lastName = this.lastNameCtrl.value;
         this.memberStore.updateMember(current);
       } else {
-        this.memberStore.addMember(new Member(this.firstNameCtrl.value, this.lastNameCtrl.value));
+        //this.memberStore.addMember(new Member(this.firstNameCtrl.value, this.lastNameCtrl.value));
       }
       this.router.navigate(['tutoring']);
     }
