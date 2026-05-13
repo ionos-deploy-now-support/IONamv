@@ -1,5 +1,6 @@
 import { effect, inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { LocalStorageService } from '../../shared/local-storage-service';
+import { Family } from '../models/family';
 import { Member } from '../models/member';
 
 @Injectable({
@@ -9,12 +10,34 @@ export class MemberStore {
   private readonly localStorage = inject(LocalStorageService);
 
   members: WritableSignal<Member[]>;
+  families: WritableSignal<Family[]>;
+
+  selectedFamily: WritableSignal<Family | undefined> = signal<Family | undefined>(undefined);
 
   constructor() {
     this.members = signal<Member[]>(this.localStorage.getItem<Member[]>('members') || []);
+    this.families = signal<Family[]>(this.localStorage.getItem<Family[]>('families') || []);
 
     effect(() => {
       this.localStorage.setItem('members', this.members());
+    });
+
+    effect(() => {
+      this.localStorage.setItem('families', this.families());
+    });
+  }
+
+  addFamily(family: Family) {
+    this.families.update((families) => [...families, family]);
+  }
+
+  updateFamily(family: Family) {
+    this.families.update((families) => {
+      let index = families.findIndex((f) => f.id === family.id);
+      if (index >= 0) {
+        families.splice(index, 1, family);
+      }
+      return [...families];
     });
   }
 
@@ -40,5 +63,9 @@ export class MemberStore {
       }
       return [...members];
     });
+  }
+
+  setSelectedFamily(family: Family | undefined) {
+    this.selectedFamily.set(family);
   }
 }

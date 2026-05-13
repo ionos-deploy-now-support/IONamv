@@ -11,7 +11,10 @@
         <td>{{ member.firstName }}</td>
         <td>{{ member.lastName }}</td>
         <td>
-          <a class="a-button invisible" [routerLink]="['/tutoring/edit', member.id]" title="modifier"
+          <a
+            class="a-button invisible"
+            [routerLink]="['/tutoring/edit', member.id]"
+            title="modifier"
             ><span class="material-symbols-outlined">edit</span></a
           >
         </td>
@@ -24,7 +27,7 @@
     }
   </table>
 } @else {
-  <div>Aucun membre enregistré</div>
+  <div class="table-message">Aucun membre enregistré</div>
 }
 
 <a class="a-button" routerLink="/tutoring/add"

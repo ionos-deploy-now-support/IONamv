@@ -1,0 +1,18 @@
+<div class="page-center">
+  <h1>
+    @if (!!family()) {
+      Modifier une famille
+    } @else {
+      Ajouter une famille
+    }
+  </h1>
+  <form class="simple-form" (ngSubmit)="register()" [formGroup]="familyForm">
+    <div class="field">
+      <label for="fn">Nom *</label><input id="fn" type="text" formControlName="name" />
+    </div>
+    @if (nameCtrl.dirty && nameCtrl.hasError('required')) {
+      <div class="field-error">Le nom est obligatoire</div>
+    }
+    <button [disabled]="familyForm.invalid">Enregistrer</button>
+  </form>
+</div>
