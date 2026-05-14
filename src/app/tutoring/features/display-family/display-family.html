@@ -1,5 +1,11 @@
 @if (family(); as familyValue) {
   <div>Famille {{ familyValue.name }}</div>
+
+  @if (addMemberDisplayed()) {
+    <amv-add-family-member (close)="showAddMember(false)"></amv-add-family-member>
+  } @else {
+    <button (click)="showAddMember(true)">Ajouter un membre</button>
+  }
 } @else {
   <div>Famille non trouvée</div>
 }

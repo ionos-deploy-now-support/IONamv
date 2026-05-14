@@ -2,6 +2,7 @@ import { effect, inject, Injectable, signal, WritableSignal } from '@angular/cor
 import { LocalStorageService } from '../../shared/local-storage-service';
 import { Family } from '../models/family';
 import { Member } from '../models/member';
+import { RecipientMember } from '../models/recipient-member';
 
 @Injectable({
   providedIn: 'root',
@@ -67,5 +68,14 @@ export class MemberStore {
 
   setSelectedFamily(family: Family | undefined) {
     this.selectedFamily.set(family);
+  }
+
+  addMemberToSelectedFamily(member: RecipientMember) {
+    const family = this.selectedFamily();
+    if (!!family) {
+      family?.members.push(member);
+      this.updateFamily(family);
+      this.setSelectedFamily(family);
+    }
   }
 }

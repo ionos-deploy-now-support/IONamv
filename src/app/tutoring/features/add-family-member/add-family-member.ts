@@ -1,0 +1,42 @@
+import { Component, inject, output } from '@angular/core';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RecipientMember } from '../../models/recipient-member';
+import { MemberStore } from '../../stores/member-store';
+
+@Component({
+  selector: 'amv-add-family-member',
+  imports: [ReactiveFormsModule],
+  templateUrl: './add-family-member.html',
+})
+export class AddFamilyMember {
+  readonly close = output<void>();
+
+  private readonly memberStore = inject(MemberStore);
+  private readonly fb = inject(NonNullableFormBuilder);
+
+  protected readonly firstNameCtrl = this.fb.control('', Validators.required);
+  protected readonly lastNameCtrl = this.fb.control('', Validators.required);
+
+  protected readonly memberForm = this.fb.group({
+    firstName: this.firstNameCtrl,
+    lastName: this.lastNameCtrl,
+  });
+
+  register(): void {
+    if (this.memberForm.valid) {
+      this.memberStore.addMemberToSelectedFamily(
+        new RecipientMember(
+          true,
+          this.firstNameCtrl.value,
+          this.lastNameCtrl.value,
+          [],
+          undefined,
+          [],
+          undefined,
+        ),
+      );
+
+      this.close.emit();
+    }
+  }
+}
