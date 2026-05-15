@@ -1,11 +1,26 @@
-@if (family(); as familyValue) {
-  <div>Famille {{ familyValue.name }}</div>
+<div class="page-center">
+  @if (family(); as familyValue) {
+    <h1>Famille {{ familyValue.name }}</h1>
 
-  @if (addMemberDisplayed()) {
-    <amv-add-family-member (close)="showAddMember(false)"></amv-add-family-member>
+    @if (!!familyValue.members.length) {
+      <table class="amv-table">
+        @for (member of familyValue.members; track member.id) {
+          <tr [class.even]="$even">
+            <td>{{ member.firstName }}</td>
+            <td>{{ member.lastName }}</td>
+          </tr>
+        }
+      </table>
+    } @else {
+      <div class="table-message">Aucune famille enregistrée</div>
+    }
+
+    @if (addMemberDisplayed()) {
+      <amv-add-family-member (close)="showAddMember(false)"></amv-add-family-member>
+    } @else {
+      <button (click)="showAddMember(true)">Ajouter un membre</button>
+    }
   } @else {
-    <button (click)="showAddMember(true)">Ajouter un membre</button>
+    <div>Famille non trouvée</div>
   }
-} @else {
-  <div>Famille non trouvée</div>
-}
+</div>

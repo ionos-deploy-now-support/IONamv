@@ -8,15 +8,27 @@
 
   tr:last-child {
     border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+
     td:first-child {
       border-bottom-left-radius: 1em;
     }
-  }
 
-  tr:last-child {
-    border-bottom-right-radius: 1em;
     td:last-child {
       border-bottom-right-radius: 1em;
+    }
+  }
+
+  tr:first-child {
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+
+    td:first-child {
+      border-top-left-radius: 1em;
+    }
+
+    td:last-child {
+      border-top-right-radius: 1em;
     }
   }
 
