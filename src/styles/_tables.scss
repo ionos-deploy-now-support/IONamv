@@ -6,12 +6,24 @@
   background-color: $c1-light;
   border-radius: 1em;
 
-  tr:last-child td:first-child {
+  tr:last-child {
     border-bottom-left-radius: 1em;
+    td:first-child {
+      border-bottom-left-radius: 1em;
+    }
   }
 
-  tr:last-child td:last-child {
+  tr:last-child {
     border-bottom-right-radius: 1em;
+    td:last-child {
+      border-bottom-right-radius: 1em;
+    }
+  }
+
+  tr.head {
+    background-color: $c2-light;
+    font-weight: bold;
+    box-shadow: inset 0 0 0 1px $c2;
   }
 
   thead {
