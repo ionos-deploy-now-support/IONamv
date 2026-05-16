@@ -54,6 +54,13 @@
   .even {
     background-color: $c1-lighter;
   }
+
+  .selectable {
+    cursor: pointer;
+    &:hover {
+      box-shadow: inset 0 0 0 2px $c2-dark;
+    }
+  }
 }
 
 .table-message {

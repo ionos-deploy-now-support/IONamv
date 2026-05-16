@@ -39,4 +39,14 @@
     margin-bottom: 0.5rem;
     padding-left: 2rem;
   }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    button {
+      flex: 1 1 auto;
+    }
+  }
 }

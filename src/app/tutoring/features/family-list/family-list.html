@@ -7,7 +7,7 @@
       </tr>
     </thead>
     @for (family of families(); track family.id) {
-      <tr class="head clickable" (click)="displayFamily(family)">
+      <tr class="head selectable" (click)="displayFamily(family)">
         <td colspan="2">{{ family.name }}</td>
       </tr>
       @for (member of family.members; track member.id) {

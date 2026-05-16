@@ -1,7 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Member } from '../../models/member';
 import { MemberStore } from '../../stores/member-store';
 
 @Component({
