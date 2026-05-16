@@ -16,10 +16,12 @@ export class AddFamilyMember {
 
   protected readonly firstNameCtrl = this.fb.control('', Validators.required);
   protected readonly lastNameCtrl = this.fb.control('', Validators.required);
+  protected readonly emailCtrl = this.fb.control(undefined, Validators.email);
 
   protected readonly memberForm = this.fb.group({
     firstName: this.firstNameCtrl,
     lastName: this.lastNameCtrl,
+    email: this.emailCtrl,
   });
 
   register(): void {
@@ -30,7 +32,7 @@ export class AddFamilyMember {
           this.firstNameCtrl.value,
           this.lastNameCtrl.value,
           [],
-          undefined,
+          this.emailCtrl.value,
           [],
           undefined,
         ),

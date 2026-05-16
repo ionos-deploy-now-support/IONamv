@@ -4,10 +4,18 @@
 
     @if (!!familyValue.members.length) {
       <table class="amv-table">
+        <thead>
+          <tr>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom de famille</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
         @for (member of familyValue.members; track member.id) {
           <tr [class.even]="$even">
             <td>{{ member.firstName }}</td>
             <td>{{ member.lastName }}</td>
+            <td>{{ member.email }}</td>
           </tr>
         }
       </table>

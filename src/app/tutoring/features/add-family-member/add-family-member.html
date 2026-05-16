@@ -1,8 +1,8 @@
 <div>
   <form class="simple-form" (ngSubmit)="register()" [formGroup]="memberForm">
     <div class="field">
-      <label for="fn">Nom de famille *</label
-      ><input id="fn" type="text" formControlName="lastName" />
+      <label for="ln">Nom de famille *</label
+      ><input id="ln" type="text" formControlName="lastName" />
     </div>
     @if (lastNameCtrl.dirty && lastNameCtrl.hasError('required')) {
       <div class="field-error">Le nom de famille est obligatoire</div>
@@ -12,6 +12,12 @@
     </div>
     @if (firstNameCtrl.dirty && firstNameCtrl.hasError('required')) {
       <div class="field-error">Le prénom est obligatoire</div>
+    }
+    <div class="field">
+      <label for="email">Email</label><input id="email" type="text" formControlName="email" />
+    </div>
+    @if (emailCtrl.touched && emailCtrl.hasError('email')) {
+      <div class="field-error">L'email saisi n'est pas valide</div>
     }
     <button [disabled]="memberForm.invalid">Enregistrer</button>
   </form>
