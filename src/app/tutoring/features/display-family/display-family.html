@@ -16,6 +16,14 @@
             <td>{{ member.firstName }}</td>
             <td>{{ member.lastName }}</td>
             <td>{{ member.email }}</td>
+            <td>
+              <a
+                class="a-button invisible"
+                [routerLink]="['member', member.id, 'edit']"
+                title="modifier"
+                ><span class="material-symbols-outlined">edit</span></a
+              >
+            </td>
           </tr>
         }
       </table>

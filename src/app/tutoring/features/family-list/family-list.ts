@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Family } from '../../models/family';
 import { MemberStore } from '../../stores/member-store';
 
 @Component({
   selector: 'amv-family-list',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './family-list.html',
 })
 export class FamilyList {

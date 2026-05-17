@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavigationService } from '../../../shared/navigation-service';
 import { Family } from '../../models/family';
 import { MemberStore } from '../../stores/member-store';
 
@@ -12,6 +13,7 @@ import { MemberStore } from '../../stores/member-store';
 export class EditFamily {
   private readonly router = inject(Router);
   private readonly memberStore = inject(MemberStore);
+  private readonly navigationService = inject(NavigationService);
 
   protected readonly family = this.memberStore.selectedFamily;
 
@@ -29,11 +31,12 @@ export class EditFamily {
       if (!!current) {
         current = { ...current, name: this.nameCtrl.value };
         this.memberStore.updateFamily(current);
+        this.navigationService.back(['tutoring', 'family', current.id]);
       } else {
         current = new Family(this.nameCtrl.value);
         this.memberStore.addFamily(current);
+        this.router.navigate(['tutoring', 'family', current.id]);
       }
-      this.router.navigate(['tutoring', 'family', current.id]);
     }
   }
 }

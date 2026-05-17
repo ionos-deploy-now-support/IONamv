@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationService } from '../../../shared/navigation-service';
 import { RecipientMember } from '../../models/recipient-member';
 import { MemberStore } from '../../stores/member-store';
 
@@ -10,9 +10,9 @@ import { MemberStore } from '../../stores/member-store';
   templateUrl: './edit-family-member.html',
 })
 export class EditFamilyMember {
-  private readonly router = inject(Router);
   private readonly memberStore = inject(MemberStore);
   private readonly fb = inject(NonNullableFormBuilder);
+  private readonly navigationService = inject(NavigationService);
 
   protected readonly family = this.memberStore.selectedFamily;
   protected readonly member = this.memberStore.selectedFamilyMember;
@@ -60,12 +60,11 @@ export class EditFamilyMember {
           ),
         );
       }
-
-      this.router.navigate(['tutoring', 'family', this.family()?.id]);
+      this.navigationService.back(['tutoring', 'family', this.family()?.id]);
     }
   }
 
   cancel() {
-    this.router.navigate(['tutoring', 'family', this.family()?.id]);
+    this.navigationService.back(['tutoring', 'family', this.family()?.id]);
   }
 }

@@ -4,16 +4,26 @@
       <tr>
         <th scope="col">Prénom</th>
         <th scope="col">Nom de famille</th>
+        <th scope="col">Email</th>
       </tr>
     </thead>
     @for (family of families(); track family.id) {
       <tr class="head selectable" (click)="displayFamily(family)">
-        <td colspan="2">{{ family.name }}</td>
+        <td colspan="4">{{ family.name }}</td>
       </tr>
       @for (member of family.members; track member.id) {
         <tr [class.even]="$even">
           <td>{{ member.firstName }}</td>
           <td>{{ member.lastName }}</td>
+          <td>{{ member.email }}</td>
+          <td>
+            <a
+              class="a-button invisible"
+              [routerLink]="['/tutoring/family', family.id, 'member', member.id, 'edit']"
+              title="modifier"
+              ><span class="material-symbols-outlined">edit</span></a
+            >
+          </td>
         </tr>
       }
     }
