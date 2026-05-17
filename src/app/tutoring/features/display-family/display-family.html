@@ -22,12 +22,7 @@
     } @else {
       <div class="table-message">Aucune membre enregistré</div>
     }
-
-    @if (addMemberDisplayed()) {
-      <amv-add-family-member (close)="showAddMember(false)"></amv-add-family-member>
-    } @else {
-      <button (click)="showAddMember(true)">Ajouter un membre</button>
-    }
+    <a class="a-button" routerLink="member/add"> Ajouter un membre </a>
   } @else {
     <div>Famille non trouvée</div>
   }

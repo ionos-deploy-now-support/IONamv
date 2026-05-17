@@ -14,6 +14,9 @@ export class MemberStore {
   families: WritableSignal<Family[]>;
 
   selectedFamily: WritableSignal<Family | undefined> = signal<Family | undefined>(undefined);
+  selectedFamilyMember: WritableSignal<RecipientMember | undefined> = signal<
+    RecipientMember | undefined
+  >(undefined);
 
   constructor() {
     this.members = signal<Member[]>(this.localStorage.getItem<Member[]>('members') || []);
@@ -70,12 +73,20 @@ export class MemberStore {
     this.selectedFamily.set(family);
   }
 
-  addMemberToSelectedFamily(member: RecipientMember) {
+  updateFamilyMember(member: RecipientMember) {
     const family = this.selectedFamily();
     if (!!family) {
-      family?.members.push(member);
+      let mIndex = family.members.findIndex((m) => m.id === member.id);
+      if (mIndex >= 0) {
+        family?.members.splice(mIndex, 1, member);
+      } else {
+        family?.members.push(member);
+      }
       this.updateFamily(family);
-      this.setSelectedFamily(family);
     }
+  }
+
+  setSelectedFamilyMember(familyMember: RecipientMember | undefined) {
+    this.selectedFamilyMember.set(familyMember);
   }
 }

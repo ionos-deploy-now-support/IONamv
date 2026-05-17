@@ -1,6 +1,6 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Family } from '../../models/family';
 import { MemberStore } from '../../stores/member-store';
 
@@ -12,11 +12,8 @@ import { MemberStore } from '../../stores/member-store';
 export class EditFamily {
   private readonly router = inject(Router);
   private readonly memberStore = inject(MemberStore);
-  private readonly route = inject(ActivatedRoute);
 
-  protected readonly family = computed(() =>
-    this.memberStore.families().find((f) => f.id === this.route.snapshot.paramMap.get('id')),
-  );
+  protected readonly family = this.memberStore.selectedFamily;
 
   private readonly fb = inject(NonNullableFormBuilder);
 
@@ -36,7 +33,6 @@ export class EditFamily {
         current = new Family(this.nameCtrl.value);
         this.memberStore.addFamily(current);
       }
-      this.memberStore.setSelectedFamily(current);
       this.router.navigate(['tutoring', 'family', current.id]);
     }
   }

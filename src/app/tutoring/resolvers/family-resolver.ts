@@ -7,6 +7,8 @@ export const familyResolver: ResolveFn<boolean> = (route) => {
   const memberStore = inject(MemberStore);
   if (memberStore.selectedFamily()?.id !== id) {
     memberStore.setSelectedFamily(memberStore.families().find((f) => f.id === id));
+  } else if (!id) {
+    memberStore.setSelectedFamily(undefined);
   }
   return true;
 };
