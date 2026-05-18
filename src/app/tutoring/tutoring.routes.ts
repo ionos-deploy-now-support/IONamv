@@ -13,7 +13,7 @@ export const tutoringRoutes: Routes = [
     path: '',
     component: Tutoring,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'list' },
+      { path: '', pathMatch: 'full', redirectTo: 'family/list' },
       { path: 'family/add', resolve: { family: familyResolver }, component: EditFamily },
       { path: 'family/list', component: FamilyList },
       {

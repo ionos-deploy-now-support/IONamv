@@ -39,4 +39,8 @@ export class EditFamily {
       }
     }
   }
+
+  cancel() {
+    this.navigationService.back(['tutoring', 'family', this.family()?.id ?? 'list']);
+  }
 }

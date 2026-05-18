@@ -1,7 +1,7 @@
 <div class="page-center">
   <h1>
     @if (!!member()) {
-      Modifier un membre
+      Modifier {{ member()?.firstName }} {{ member()?.lastName }}
     } @else {
       Ajouter un membre
     }
