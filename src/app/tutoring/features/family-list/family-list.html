@@ -1,40 +1,76 @@
-@if (families().length) {
-  <table class="amv-table">
-    <thead>
-      <tr>
-        <th scope="col">Prénom</th>
-        <th scope="col">Nom de famille</th>
-        <th scope="col">Email</th>
-      </tr>
-    </thead>
-    @for (family of families(); track family.id) {
-      <tr class="head selectable" (click)="displayFamily(family)">
-        <td colspan="5">{{ family.name }}</td>
-      </tr>
-      @for (member of family.members; track member.id) {
-        <tr [class.even]="$even">
-          <td>{{ member.firstName }}</td>
-          <td>{{ member.lastName }}</td>
-          <td>{{ member.email }}</td>
+<div class="page-center">
+  @if (familiesToDisplay().length) {
+    <h1>Liste des familles adhérentes</h1>
+    <table class="amv-table">
+      <thead>
+        <tr>
+          <th scope="col">Prénom</th>
+          <th scope="col">Nom de famille</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      @for (familyDisplay of familiesToDisplay(); track familyDisplay.family.id) {
+        @let family = familyDisplay.family;
+        <tr class="head selectable trackable" (click)="switchExpanded(familyDisplay)">
+          <td colspan="3">{{ family.name }}</td>
           <td>
             <a
               class="a-button invisible"
-              [routerLink]="['/tutoring/family', family.id, 'member', member.id, 'edit']"
+              [routerLink]="['/tutoring/family', family.id]"
+              title="modifier"
+              ><span class="material-symbols-outlined">visibility</span></a
+            >
+          </td>
+          <td>
+            <a
+              class="a-button invisible"
+              [routerLink]="['/tutoring/family', family.id, 'edit']"
               title="modifier"
               ><span class="material-symbols-outlined">edit</span></a
             >
           </td>
           <td>
-            <button class="invisible" title="supprimer">
-              <span class="material-symbols-outlined" (click)="removeFamilyMember(family, member)"
-                >delete</span
-              >
-            </button>
+            @if (familyDisplay.expanded) {
+              <button class="invisible" title="supprimer">
+                <span class="material-symbols-outlined">arrow_drop_down</span>
+              </button>
+            } @else {
+              <button class="invisible" title="supprimer">
+                <span class="material-symbols-outlined">arrow_drop_up</span>
+              </button>
+            }
           </td>
         </tr>
+        @if (familyDisplay.expanded) {
+          @for (member of family.members; track member.id) {
+            <tr class="trackable" [class.even]="$even">
+              <td>{{ member.firstName }}</td>
+              <td>{{ member.lastName }}</td>
+              <td>{{ member.email }}</td>
+              <td></td>
+              <td>
+                <a
+                  class="a-button invisible"
+                  [routerLink]="['/tutoring/family', family.id, 'member', member.id, 'edit']"
+                  title="modifier"
+                  ><span class="material-symbols-outlined">edit</span></a
+                >
+              </td>
+              <td>
+                <button
+                  class="invisible"
+                  title="supprimer"
+                  (click)="removeFamilyMember(family, member)"
+                >
+                  <span class="material-symbols-outlined"> delete </span>
+                </button>
+              </td>
+            </tr>
+          }
+        }
       }
-    }
-  </table>
-} @else {
-  <div class="table-message">Aucune famille enregistrée</div>
-}
+    </table>
+  } @else {
+    <div class="table-message">Aucune famille enregistrée</div>
+  }
+</div>

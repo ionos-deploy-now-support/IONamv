@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Family } from '../../models/family';
 import { RecipientMember } from '../../models/recipient-member';
@@ -14,7 +14,9 @@ export class FamilyList {
 
   protected readonly memberStore = inject(MemberStore);
 
-  protected readonly families = this.memberStore.families;
+  protected readonly familiesToDisplay = computed(() =>
+    this.memberStore.families().map((f) => new FamilyDisplay(f, true)),
+  );
 
   public displayFamily(family: Family) {
     this.router.navigate(['tutoring', 'family', family.id]);
@@ -23,4 +25,15 @@ export class FamilyList {
   public removeFamilyMember(family: Family, member: RecipientMember) {
     this.memberStore.removeFamilyMember(family, member);
   }
+
+  public switchExpanded(familyDisplay: FamilyDisplay) {
+    familyDisplay.expanded = !familyDisplay.expanded;
+  }
+}
+
+class FamilyDisplay {
+  constructor(
+    public family: Family,
+    public expanded: boolean,
+  ) {}
 }
