@@ -45,6 +45,16 @@ export class MemberStore {
     });
   }
 
+  removeFamily(family: Family) {
+    this.families.update((families) => {
+      let index = families.indexOf(family);
+      if (index >= 0) {
+        families.splice(index, 1);
+      }
+      return [...families];
+    });
+  }
+
   addMember(member: Member) {
     this.members.update((members) => [...members, member]);
   }
@@ -84,6 +94,14 @@ export class MemberStore {
       }
       this.updateFamily(family);
     }
+  }
+
+  removeFamilyMember(family: Family, member: RecipientMember) {
+    let index = family.members.indexOf(member);
+    if (index >= 0) {
+      family.members.splice(index, 1);
+    }
+    this.updateFamily(family);
   }
 
   setSelectedFamilyMember(familyMember: RecipientMember | undefined) {

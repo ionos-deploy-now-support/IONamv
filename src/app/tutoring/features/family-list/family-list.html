@@ -9,7 +9,7 @@
     </thead>
     @for (family of families(); track family.id) {
       <tr class="head selectable" (click)="displayFamily(family)">
-        <td colspan="4">{{ family.name }}</td>
+        <td colspan="5">{{ family.name }}</td>
       </tr>
       @for (member of family.members; track member.id) {
         <tr [class.even]="$even">
@@ -23,6 +23,13 @@
               title="modifier"
               ><span class="material-symbols-outlined">edit</span></a
             >
+          </td>
+          <td>
+            <button class="invisible" title="supprimer">
+              <span class="material-symbols-outlined" (click)="removeFamilyMember(family, member)"
+                >delete</span
+              >
+            </button>
           </td>
         </tr>
       }
