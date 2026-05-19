@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { version } from 'packageJson';
+import { VersionStore } from '../../shared/version-store';
 
 @Component({
   selector: 'amv-footer',
@@ -8,5 +8,7 @@ import { version } from 'packageJson';
   templateUrl: './footer.html',
 })
 export class Footer {
-  protected readonly appVersion = signal(version);
+  private readonly versionStore = inject(VersionStore);
+
+  protected readonly appVersion = this.versionStore.version;
 }
