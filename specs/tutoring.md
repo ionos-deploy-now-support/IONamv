@@ -1,4 +1,4 @@
-# Members
+# Tutoring
 
 Ce projet permet de gérer une association de soutien scolaire. Il s'agit d'un projet uniquement front-end.
 
