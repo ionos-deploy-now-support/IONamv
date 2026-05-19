@@ -29,6 +29,10 @@ export class FamilyList {
   public switchExpanded(familyDisplay: FamilyDisplay) {
     familyDisplay.expanded = !familyDisplay.expanded;
   }
+
+  public removeFamily(family: Family) {
+    this.memberStore.removeFamily(family);
+  }
 }
 
 class FamilyDisplay {

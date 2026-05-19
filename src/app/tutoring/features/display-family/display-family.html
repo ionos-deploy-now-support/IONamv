@@ -42,7 +42,10 @@
     } @else {
       <div class="table-message">Aucune membre enregistré</div>
     }
-    <a class="a-button" routerLink="member/add"> Ajouter un membre </a>
+    <div class="h-panel">
+      <a class="a-button" routerLink="member/add"> Ajouter un membre </a>
+      <button type="button" (click)="removeFamily()">Supprimer la famille</button>
+    </div>
   } @else {
     <div>Famille non trouvée</div>
   }

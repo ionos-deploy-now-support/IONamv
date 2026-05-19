@@ -12,7 +12,9 @@
       @for (familyDisplay of familiesToDisplay(); track familyDisplay.family.id) {
         @let family = familyDisplay.family;
         <tr class="head selectable trackable" (click)="switchExpanded(familyDisplay)">
-          <td colspan="3">{{ family.name }}</td>
+          <td></td>
+          <td>{{ family.name }}</td>
+          <td></td>
           <td>
             <a
               class="a-button invisible"
@@ -28,6 +30,11 @@
               title="modifier"
               ><span class="material-symbols-outlined">edit</span></a
             >
+          </td>
+          <td>
+            <button class="invisible" title="supprimer" (click)="removeFamily(family)">
+              <span class="material-symbols-outlined"> delete </span>
+            </button>
           </td>
           <td>
             @if (familyDisplay.expanded) {
@@ -65,6 +72,7 @@
                   <span class="material-symbols-outlined"> delete </span>
                 </button>
               </td>
+              <td></td>
             </tr>
           }
         }

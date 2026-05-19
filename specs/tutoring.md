@@ -22,7 +22,7 @@ Le menu contient des liens vers certaines pages :
 - Un membre a un nom de famille (qui peut être différent du nom de famille), un prénom, et un email.
 
 ### Écran
-- Les familles sont affichées, avec leur nom, un bouton pour afficher le détail d'une famille, un autre pour modifier la famille, et une icone indiquant si la famille est pliée ou dépliée.
+- Les familles sont affichées, avec leur nom, des boutons permettent d'afficher le détail d'une famille, de modifier la famille, ou de la supprimer, et une icone indique si la famille est pliée ou dépliée.
 - Sous chaque famille en mode dépliée, la liste des membres de la famille est affichée, avec leur prénom, nom de famille, email, un bouton pour modifier le membre, et un bouton pour supprimer le membre. 
 - La liste des familles et de leurs membres est stockée et récupérée dans le local storage.
 - Un clic sur la ligne d'une famille permet d'afficher ou de cacher la liste des membre.
@@ -34,6 +34,10 @@ Lors du clic sur le bouton, l'utilisateur est redirigé vers la page de détail 
 ### Modifier une famille
 
 Lors du clic sur le bouton, l'utilisateur est redirigé vers la page de modification d'une famille.
+
+### Supprimer une famille
+
+Lors du clic sur le bouton, la famille est supprimé du local storage, ainsi que tous ses membres, et la liste est mise à jour.
 
 ### Modifier un membre
 
@@ -55,8 +59,18 @@ Un formulaire permet d'ajouter une famille en saisissant son nom.
 - Un bouton d'annulation est présent. Au clic, l'utilisateur revient sur la page précédente, ou sur la liste des familles à défaut.
 
 ## Détail d'une famille
+- Le nom de la famille est affichée, avec un bouton permettant la modification
 - La liste des membres de la famille est affichée, avec le prénom, le nom, et l'email de chaque membre, ainsi qu'un bouton pour modifier et un bouton pour supprimer chaque membre.
 - Un bouton permet d'ajouter un membre
+- Un bouton permet de supprimer la famille
+
+### Modifier la famille
+
+Lors du clic sur le bouton, l'utilisateur est redirigé vers la page de modification d'une famille.
+
+### Supprimer la famille
+
+Lors du clic sur le bouton, la famille est supprimé du local storage, ainsi que tous ses membres, et l'utilisateur est redirigé vers la liste des familles.
 
 ### Ajouter un membre
 
