@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavigationService } from '../../../shared/navigation-service';
 import { RecipientMember } from '../../models/recipient-member';
-import { MemberStore } from '../../stores/member-store';
+import { FamilyStore } from '../../stores/family-store';
 
 @Component({
   selector: 'amv-edit-family-member',
@@ -10,7 +10,7 @@ import { MemberStore } from '../../stores/member-store';
   templateUrl: './edit-family-member.html',
 })
 export class EditFamilyMember {
-  private readonly memberStore = inject(MemberStore);
+  private readonly memberStore = inject(FamilyStore);
   private readonly fb = inject(NonNullableFormBuilder);
   private readonly navigationService = inject(NavigationService);
 

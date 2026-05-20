@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Family } from '../../models/family';
 import { RecipientMember } from '../../models/recipient-member';
-import { MemberStore } from '../../stores/member-store';
+import { FamilyStore } from '../../stores/family-store';
 
 @Component({
   selector: 'amv-family-list',
@@ -12,7 +12,7 @@ import { MemberStore } from '../../stores/member-store';
 export class FamilyList {
   private readonly router = inject(Router);
 
-  protected readonly memberStore = inject(MemberStore);
+  protected readonly memberStore = inject(FamilyStore);
 
   protected readonly familiesToDisplay = computed(() =>
     this.memberStore.families().map((f) => new FamilyDisplay(f, true)),

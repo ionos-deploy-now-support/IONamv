@@ -1,5 +1,10 @@
 <div class="footer">
   <a routerLink="/">Accueil</a>
   <a href="mailto:amv.prog@gmail.com">Contact</a>
-  <div>v{{ appVersion() }}</div>
+  <div class="version-infos">
+    <div>v{{ appVersion() }}</div>
+    <a routerLink="/info" title="infos">
+      <span class="material-symbols-outlined">info</span>
+    </a>
+  </div>
 </div>

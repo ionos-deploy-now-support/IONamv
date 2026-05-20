@@ -19,6 +19,8 @@ export class VersionStore {
   }
 
   updateStorage(oldVersion: string | null) {
-    //console.log(`update from version ${oldVersion}`);
+    if (!oldVersion) {
+      this.localStorage.removeItem('members');
+    }
   }
 }

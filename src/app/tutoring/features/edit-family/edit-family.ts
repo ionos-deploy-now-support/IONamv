@@ -3,7 +3,7 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { NavigationService } from '../../../shared/navigation-service';
 import { Family } from '../../models/family';
-import { MemberStore } from '../../stores/member-store';
+import { FamilyStore } from '../../stores/family-store';
 
 @Component({
   selector: 'amv-edit-family',
@@ -12,7 +12,7 @@ import { MemberStore } from '../../stores/member-store';
 })
 export class EditFamily {
   private readonly router = inject(Router);
-  private readonly memberStore = inject(MemberStore);
+  private readonly memberStore = inject(FamilyStore);
   private readonly navigationService = inject(NavigationService);
 
   protected readonly family = this.memberStore.selectedFamily;

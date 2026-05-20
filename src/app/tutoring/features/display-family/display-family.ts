@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { RecipientMember } from '../../models/recipient-member';
-import { MemberStore } from '../../stores/member-store';
+import { FamilyStore } from '../../stores/family-store';
 
 @Component({
   selector: 'amv-display-family',
@@ -10,7 +10,7 @@ import { MemberStore } from '../../stores/member-store';
 })
 export class DisplayFamily {
   private readonly router = inject(Router);
-  private readonly memberStore = inject(MemberStore);
+  private readonly memberStore = inject(FamilyStore);
 
   protected readonly family = this.memberStore.selectedFamily;
 

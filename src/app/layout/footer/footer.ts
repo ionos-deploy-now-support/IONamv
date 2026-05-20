@@ -6,6 +6,7 @@ import { VersionStore } from '../../shared/version-store';
   selector: 'amv-footer',
   imports: [RouterLink],
   templateUrl: './footer.html',
+  styleUrl: './footer.scss',
 })
 export class Footer {
   private readonly versionStore = inject(VersionStore);

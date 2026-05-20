@@ -1,16 +1,14 @@
 import { effect, inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { LocalStorageService } from '../../shared/local-storage-service';
 import { Family } from '../models/family';
-import { Member } from '../models/member';
 import { RecipientMember } from '../models/recipient-member';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MemberStore {
+export class FamilyStore {
   private readonly localStorage = inject(LocalStorageService);
 
-  members: WritableSignal<Member[]>;
   families: WritableSignal<Family[]>;
 
   selectedFamily: WritableSignal<Family | undefined> = signal<Family | undefined>(undefined);
@@ -19,12 +17,7 @@ export class MemberStore {
   >(undefined);
 
   constructor() {
-    this.members = signal<Member[]>(this.localStorage.getItem<Member[]>('members') || []);
     this.families = signal<Family[]>(this.localStorage.getItem<Family[]>('families') || []);
-
-    effect(() => {
-      this.localStorage.setItem('members', this.members());
-    });
 
     effect(() => {
       this.localStorage.setItem('families', this.families());
@@ -52,30 +45,6 @@ export class MemberStore {
         families.splice(index, 1);
       }
       return [...families];
-    });
-  }
-
-  addMember(member: Member) {
-    this.members.update((members) => [...members, member]);
-  }
-
-  updateMember(member: Member) {
-    this.members.update((members) => {
-      let index = members.findIndex((m) => m.id === member.id);
-      if (index >= 0) {
-        members.splice(index, 1, member);
-      }
-      return [...members];
-    });
-  }
-
-  removeMember(member: Member) {
-    this.members.update((members) => {
-      let index = members.indexOf(member);
-      if (index >= 0) {
-        members.splice(index, 1);
-      }
-      return [...members];
     });
   }
 
